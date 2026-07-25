@@ -1,101 +1,198 @@
-# Spam Email Classification System
+# Student Marks Prediction using Machine Learning
 
-A production-grade machine learning system designed to robustly classify emails as "Spam" or "Ham" (legitimate). This project features a modular pipeline architecture for training and inference, integrated with a modern Streamlit user interface for easy interaction.
+A Machine Learning web application that predicts a student's **Mathematics score** based on demographic and academic information. The project is built using Python, Scikit-learn, Flask, and a modular machine learning pipeline.
 
-## 🚀 Key Features
+---
 
-- **Advanced ML Pipeline**: Modular design separating data ingestion, transformation, and model training.
-- **Multiple Model Support**: evaluation of various algorithms including SVM, Logistic Regression, Decision Trees, and Random Forest.
-- **Interactive Web UI**: Built with Streamlit for real-time single-email analysis and batch processing.
-- **MBOX Support**: Native capability to process and classify entire `mbox` email archives.
-- **Detailed Analytics**: Comprehensive logging and performance metrics (Precision, Recall, F1-Score).
+## 🚀 Features
+
+- Predicts **Mathematics Score** using Machine Learning.
+- Interactive Flask web application.
+- Modular ML pipeline architecture.
+- Data preprocessing using Scikit-learn.
+- Feature engineering and preprocessing pipeline.
+- Model serialization using Dill.
+- Clean and responsive user interface.
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Language**: Python 3.10+
-- **Frontend**: Streamlit
-- **ML Framework**: Scikit-learn
-- **Data Processing**: Pandas, NumPy, BeautifulSoup4
-- **Project Management**: `uv` (recommended) or `pip`
+- **Language:** Python 3.11
+- **Frontend:** HTML, CSS, Flask
+- **Machine Learning:** Scikit-learn
+- **Data Processing:** Pandas, NumPy
+- **Visualization:** Matplotlib, Seaborn
+- **Model Serialization:** Dill
+
+---
 
 ## 📂 Project Structure
 
 ```
-├── app.py                  # Main Streamlit Web Application
-├── requirements.txt        # Project dependencies
-├── main.py                 # (Optional) Alternative entry point
+Student-marks-prediction/
+│
+├── app.py
+├── requirements.txt
+├── setup.py
+├── Dockerfile
+├── README.md
+│
+├── Artifacts/
+│   ├── model.pkl
+│   └── preprocessor.pkl
+│
+├── Notebook_Experiments/
+│
 ├── src/
-│   ├── components/         # Core processing modules (Ingestion, Transformation)
-│   ├── pipeline/           # Orchestration pipelines (Training, Prediction)
-│   ├── config/             # Configuration and parameters
-│   └── utils/              # Helper functions, logging, and state management
-├── data/                   # Dataset storage (inputs)
-├── outputs/                # Training artifacts (models, vectorizers)
-└── logs/                   # System runtime logs
+│   ├── components/
+│   ├── pipeline/
+│   ├── exception.py
+│   ├── logger.py
+│   └── utils.py
+│
+├── templates/
+├── static/
+└── catboost_info/
 ```
+
+---
 
 ## ⚡ Installation
 
-1. **Clone the Repository**
-   ```bash
-   git clone <repository_url>
-   cd Spam-Email-Detection
-   ```
-
-2. **Set up Environment**
-   It is recommended to use a virtual environment.
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## 🖥️ Usage
-
-### 1. Running the Web Application
-Launch the interactive dashboard to classify emails instantly.
+### Clone the Repository
 
 ```bash
-streamlit run app.py
+git clone https://github.com/prashanth20261/Student-marks-prediction.git
 ```
 
-- **Single Email Tab**: Paste email content to get an immediate Spam/Ham prediction with a confidence score.
-- **Batch Processing Tab**: Upload an `.mbox` file to process multiple emails at once and download the results as a CSV.
+### Go to the Project Folder
 
-### 2. Training the Model
-(Optional) If you wish to retrain the models on new data:
+```bash
+cd Student-marks-prediction
+```
 
-1. Place your dataset in `data/dataset/dataset.csv`.
-2. Run the training pipeline:
-   ```bash
-   python -m src.pipeline.training_pipeline
-   ```
-3. Artifacts (Model & Vectorizer) will be saved in the `outputs/` directory.
-4. **Important**: Update `src/config/config.py` with the new paths to your generated model and vectorizer if they change.
+### Create Virtual Environment
 
-## ⚙️ Configuration
+```bash
+python -m venv .venv
+```
 
-The system is highly configurable via `src/config/config.py`. You can adjust:
-- Model hyperparameters (Grid Search configuration)
-- Input/Output paths
-- Training parameters (Cross-validation folds, etc.)
+### Activate Virtual Environment
 
-## 📊 Model Performance
+Windows
 
-The pipeline automatically evaluates models using 5-fold cross-validation. Metrics including Accuracy, Precision, Recall, and F1-Score are logged for each experiment. By default, the system selects the best performing model (often SVM or Random Forest) for inference.
+```bash
+.venv\Scripts\activate
+```
+
+Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run the Project
+
+```bash
+python app.py
+```
+
+Open your browser and visit
+
+```
+http://127.0.0.1:8080
+```
+
+---
+
+## 🖥️ How It Works
+
+The user enters:
+
+- Gender
+- Race/Ethnicity
+- Parental Level of Education
+- Lunch Type
+- Test Preparation Course
+- Reading Score
+- Writing Score
+
+The trained Machine Learning model processes these inputs and predicts the student's **Mathematics Score**.
+
+---
+
+## 📊 Machine Learning Pipeline
+
+1. Data Collection
+2. Data Preprocessing
+3. Feature Engineering
+4. Train-Test Split
+5. Model Training
+6. Model Evaluation
+7. Model Serialization
+8. Prediction using Flask
+
+---
+
+## 🤖 Model Used
+
+- Linear Regression
+
+The model predicts the **Mathematics Score** using Reading Score, Writing Score, and demographic information.
+
+---
+
+## 🔮 Future Improvements
+
+- Predict all three subject scores:
+  - Mathematics
+  - Reading
+  - Writing
+- Add more Machine Learning models.
+- Hyperparameter tuning.
+- Deploy using Docker.
+- Deploy on Render or AWS.
+- Add performance dashboard and visualizations.
+
+---
 
 ## 🤝 Contributing
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome.
 
-## 📝 License
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Push the branch
+5. Create a Pull Request
 
-Distributed under the MIT License. See `LICENSE` for more information.
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 👨‍💻 Author
+
+**Prashanth R**
+
+GitHub:
+https://github.com/prashanth20261
+
+Email:
+prashanth.20261@gmail.com
+
+---
+
+## ⭐ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub.
